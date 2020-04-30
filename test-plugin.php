@@ -15,9 +15,25 @@ defined('ABSPATH') or die('You cannot access this file!');
 
 class TestPlugin
 {
-	function custom_post_type(){
+	function __construct()
+	{
+		add_action('init', array($this, 'custom_post_type'));
+	}
+	
+	function custom_post_type()
+	{
 		register_post_type('device', ['public'=>'true', 'label'=>'Devices']);
 	}
+	
+	function activate()
+	{
+		//calling function custom_post_type
+		$this->custom_post_type();  
+		//Flushing rewrite rules
+		flush_rewrite_rules();
+	}
+	
+	
 }
 
 
