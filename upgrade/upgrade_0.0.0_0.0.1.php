@@ -1,7 +1,4 @@
 <?php
-
-
-<?php
 if(!defined('TEST_UPG_001')) {
 
     define('TEST_UPG_001', 'TEST_UPG_001');
