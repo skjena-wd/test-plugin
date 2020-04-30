@@ -13,6 +13,19 @@
 
 defined('ABSPATH') or die('You cannot access this file!');
 
+class TestPlugin
+{
+	function custom_post_type(){
+		register_post_type('device', ['public'=>'true', 'label'=>'Devices']);
+	}
+}
+
+
+
+if(class_exists('TestPlugin'))
+{
+	$testPlugin = new TestPlugin();
+}
 
 
 
