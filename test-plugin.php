@@ -19,8 +19,8 @@ defined('ABSPATH') or die('You cannot access this file!');
 // }
 
 class TestPlugin {
-    // const NAME = 'Test Plugin';
-    // const OPTION_INSTALLER_VERSION = 'test-installer-version';	
+    const NAME = 'Test Plugin';
+    const OPTION_INSTALLER_VERSION = 'test-installer-version';	
 	
 	function __construct(){
 		add_action('init', array($this, 'custom_post_type'));
