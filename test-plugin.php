@@ -27,7 +27,7 @@ class TestPlugin {
 	}
 	
 	function custom_post_type(){
-		register_post_type('device', ['public'=>'true', 'label'=>'Devices']);
+		register_post_type('device', ['public'=>true, 'label'=>'Devices']);
 	}
 	
 	function activate(){
