@@ -54,8 +54,8 @@ class TestPlugin {
     public static function initEntities($post_types) {
 
         $post_types = array_merge($post_types, array(
-            "AvsSkinSettings" => "AvsSkinSettings",
-            "AvsSkin" => "AvsSkin"
+            "TestSkinSettings" => "TestSkinSettings",
+            "TestSkin" => "TestSkin"
         ));
 
         return $post_types;
