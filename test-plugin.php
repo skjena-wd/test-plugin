@@ -31,16 +31,16 @@ class TestPlugin {
 		// Check if Avs Web CMS is loaded
 		if(class_exists('Avs_Web_CMS') && Avs_Web_CMS::$initialized) {
 
-			// require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
-			//Add types	
-			// add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  
-
 				// Register installer
 				AVS_WC_Extra_Installer::getInstance()->addPlugin(
 					self::OPTION_INSTALLER_VERSION,
 					__(self::NAME, UIBuilder_Naming::getSlug()),
 					plugin_dir_path(__FILE__) . 'upgrade'
 				);
+
+			 require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
+			//Add types	
+			 add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  
 
 		}
 	}
