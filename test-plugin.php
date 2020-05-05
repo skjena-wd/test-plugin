@@ -32,8 +32,7 @@ class TestPlugin {
 
 			require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
 			//Add types	
-			 add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  
-		
+			 add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  		
 
 				// Register installer
 				AVS_WC_Extra_Installer::getInstance()->addPlugin(
@@ -50,16 +49,14 @@ class TestPlugin {
      * Init entities
      * @param $post_types
      * @return array
-     */
-    public static function initEntities($post_types) {
-
+     */	
+	public static function initEntities($post_types) {
         $post_types = array_merge($post_types, array(
-            "AvsSkinSettings" => "AvsSkinSettings",
-            "AvsSkin" => "AvsSkin"
+            "Device" => "Device",
         ));
-
         return $post_types;
     }
+	
 	
 	function __construct(){
 		add_action('init', array($this, 'custom_post_type'));
