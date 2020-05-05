@@ -66,7 +66,7 @@ class TestPlugin {
 	}
 	
 	function custom_post_type(){
-		register_post_type('device', ['public'=>true, 'label'=>'Devices']);
+		register_post_type('device', ['public'=>true, 'menu_icon'=>'dashicons-dashboard', 'label'=>'Devices']);
 	}
 	
 	function activate(){
