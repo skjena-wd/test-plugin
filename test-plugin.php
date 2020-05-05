@@ -21,8 +21,7 @@ if(is_multisite()) {
 class TestPlugin {
 
     const NAME = 'Test Plugin';
-	const OPTION_INSTALLER_VERSION = 'test-installer-version';	
-	
+	const OPTION_INSTALLER_VERSION = 'test-installer-version';		
 
 	/**
 	 * init plugin
@@ -31,6 +30,11 @@ class TestPlugin {
 		// Check if Avs Web CMS is loaded
 		if(class_exists('Avs_Web_CMS') && Avs_Web_CMS::$initialized) {
 
+			require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
+			//Add types	
+			 add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  
+		
+
 				// Register installer
 				AVS_WC_Extra_Installer::getInstance()->addPlugin(
 					self::OPTION_INSTALLER_VERSION,
@@ -38,16 +42,25 @@ class TestPlugin {
 					plugin_dir_path(__FILE__) . 'upgrade'
 				);
 
-			 require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
-			//Add types	
-			 add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  
 
 		}
 	}
-		
 
+	 /**
+     * Init entities
+     * @param $post_types
+     * @return array
+     */
+    public static function initEntities($post_types) {
+
+        $post_types = array_merge($post_types, array(
+            "AvsSkinSettings" => "AvsSkinSettings",
+            "AvsSkin" => "AvsSkin"
+        ));
+
+        return $post_types;
+    }
 	
-
 	function __construct(){
 		add_action('init', array($this, 'custom_post_type'));
 	}
@@ -71,6 +84,7 @@ class TestPlugin {
 		//Delete CPT
 		//Delete CPT data from database
 	}
+
 }
 
 
