@@ -18,6 +18,18 @@ if(is_multisite()) {
     TestPlugin::init();
 }
 
+function wpdocs_add_my_custom_menu() {
+    // Add an item to the menu.
+    add_menu_page(
+        __( 'My Page', 'textdomain' ),
+        __( 'My Title', 'textdomain' ),
+        'manage_options',
+        'my-page',
+        'my_admin_page_function',
+        'dashicons-admin-media'
+    );
+}
+
 class TestPlugin {
 
     const NAME = 'Test Plugin';
