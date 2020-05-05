@@ -18,16 +18,6 @@ if(is_multisite()) {
     TestPlugin::init();
 }
 
-function wpdocs_add_my_custom_menu() {
-    // Add an item to the menu.
-    add_menu_page(
-        __( 'My Page', 'textdomain' ),
-        __( 'My Title', 'textdomain' ),
-        'manage_options',
-        'my-page',
-        'my_admin_page_function',
-        'dashicons-admin-media'
-    );
 }
 
 class TestPlugin {
@@ -40,16 +30,18 @@ class TestPlugin {
 	 * init plugin
 	 */
 	public static function init() {
-	// Check if Avs Web CMS is loaded
-	if(class_exists('Avs_Web_CMS') && Avs_Web_CMS::$initialized) {
+		// Check if Avs Web CMS is loaded
+		if(class_exists('Avs_Web_CMS') && Avs_Web_CMS::$initialized) {
 
-			// Register installer
-			AVS_WC_Extra_Installer::getInstance()->addPlugin(
-				self::OPTION_INSTALLER_VERSION,
-				__(self::NAME, UIBuilder_Naming::getSlug()),
-				plugin_dir_path(__FILE__) . 'upgrade'
-			);
+				// Register installer
+				AVS_WC_Extra_Installer::getInstance()->addPlugin(
+					self::OPTION_INSTALLER_VERSION,
+					__(self::NAME, UIBuilder_Naming::getSlug()),
+					plugin_dir_path(__FILE__) . 'upgrade'
+				);
 
+				require_all(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'entity');
+				add_filter( "avs_post_types", array(__CLASS__, 'initEntities'), 10);  //Add types							
 		}
 	}
 		
