@@ -53,42 +53,12 @@ class TestPlugin {
             "Device" => "Device",
         ));
         return $post_types;
-    }
-	
-	
-	function __construct(){
-		// add_action('init', array($this, 'custom_post_type'));
-	}
-	
-	function custom_post_type(){
-		register_post_type('device', ['public'=>true, 'menu_icon'=>'dashicons-dashboard', 'label'=>'Devices']);
-	}
-	
-	function activate(){
-		//calling function custom_post_type
-		$this->custom_post_type();  
-		//Flushing rewrite rules
-		flush_rewrite_rules();
-	}	
-	
-	function deactivate(){
-		flush_rewrite_rules();
-	}
-	
-	function uninstall(){
-		//Delete CPT
-		//Delete CPT data from database
-	}
-
+    }			
 }
 
 
 if(class_exists('TestPlugin')){
 	$testPlugin = new TestPlugin();
 }
-
-// register_activation_hook(__FILE__, array($testPlugin, 'activate'));
-
-// register_deactivation_hook(__FILE__, array($testPlugin, 'deactivate'));
 
 ?>
