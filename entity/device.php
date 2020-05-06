@@ -87,7 +87,6 @@ protected function __initPostType() {
         "public" => false,
         "show_ui" => true,
         "has_archive" => false,
-        // "show_in_menu" => 'edit.php?post_type=' . DeviceMenu::POST_TYPE,
         "show_in_menu" => true,
         "exclude_from_search" => false,
         "capability_type" => $this -> getCapability(),
