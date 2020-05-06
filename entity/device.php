@@ -23,7 +23,7 @@ public function init() {
     parent::init();
 
     // add constraint on this post type
-    add_filter('avs_title_unique_constraint', function ($types) { $types[] = self::POST_TYPE; return $types; } );
+    // add_filter('avs_title_unique_constraint', function ($types) { $types[] = self::POST_TYPE; return $types; } );
 
     // add trash contraint on this post type
     // add_filter("can_trash_{$this->getPostTypeName()}_or_restore", array($this, 'isTrashable'), 1, 2);
