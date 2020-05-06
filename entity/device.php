@@ -109,80 +109,80 @@ protected function __initPostType() {
 
 protected function __installFields() {
 
-    if(function_exists("register_field_group")) {
+    // if(function_exists("register_field_group")) {
 
-        // Prepare filter lists
-        $repeater_subfields = $this->getDirectivesAsAcf();
+    //     // Prepare filter lists
+    //     $repeater_subfields = $this->getDirectivesAsAcf();
 
-        // Prepare field for dynamic collection
-        $baseFields = array(
+    //     // Prepare field for dynamic collection
+    //     $baseFields = array(
 
-            array (
-                'key' => $this->getFieldKey(self::ACF_FIELD_LOGO),
-                'label' => __('Logo', UIBuilder_Naming::getSlug()),
-                'name' => self::ACF_FIELD_LOGO,
-                'return_format' => 'array',
-                'preview_size' => 'medium',
-                'library' => 'all',
-                'mime_types' => 'jpeg, jpg, png, gif',
-                'type' => 'image',
-                'required' => 0,
+    //         array (
+    //             'key' => $this->getFieldKey(self::ACF_FIELD_LOGO),
+    //             'label' => __('Logo', UIBuilder_Naming::getSlug()),
+    //             'name' => self::ACF_FIELD_LOGO,
+    //             'return_format' => 'array',
+    //             'preview_size' => 'medium',
+    //             'library' => 'all',
+    //             'mime_types' => 'jpeg, jpg, png, gif',
+    //             'type' => 'image',
+    //             'required' => 0,
 
-                // Integration with Image Formats Plugin
-                'scope' => self::IMAGE_SCOPE_LOGO,
-            ),
+    //             // Integration with Image Formats Plugin
+    //             'scope' => self::IMAGE_SCOPE_LOGO,
+    //         ),
 
-            array (
-                'key' => $this->getFieldKey(self::ACF_FIELD_RULES),
-                'label' => __('Rules', UIBuilder_Naming::getSlug()),
-                'name' => self::ACF_FIELD_RULES,
-                'type' => 'repeater',
-                'sub_fields' => $repeater_subfields,
-                'layout' => 'row',
-                'button_label' => __("Add Rule", UIBuilder_Naming::getSlug()),
-            ),
-        );
+    //         array (
+    //             'key' => $this->getFieldKey(self::ACF_FIELD_RULES),
+    //             'label' => __('Rules', UIBuilder_Naming::getSlug()),
+    //             'name' => self::ACF_FIELD_RULES,
+    //             'type' => 'repeater',
+    //             'sub_fields' => $repeater_subfields,
+    //             'layout' => 'row',
+    //             'button_label' => __("Add Rule", UIBuilder_Naming::getSlug()),
+    //         ),
+    //     );
 
-        $post_type_fields = array (
-            'id' => self::FIELD_GROUP_ID,
-            'title' => self::FIELD_GROUP_TITLE,
-            'fields' => $baseFields,
-            'location' => array (
-                array (
-                    array (
-                        'param' => 'post_type',
-                        'operator' => '==',
-                        'value' => self::getPostTypeName(),
-                        'order_no' => 0,
-                        'group_no' => 0,
-                    ),
-                ),
-            ),
-            'options' => array (
-                'position' => 'acf_after_title',
-                'layout' => 'default',
-                'hide_on_screen' => array (
-                    0 => 'permalink',
-                    1 => 'the_content',
-                    2 => 'excerpt',
-                    3 => 'custom_fields',
-                    4 => 'discussion',
-                    5 => 'revisions',
-                    6 => 'slug',
-                    7 => 'author',
-                    8 => 'format',
-                    9 => 'featured_image',
-                    10 => 'tags',
-                    11 => 'send-trackbacks',
-                ),
-            ),
-            'menu_order' => 0,
-        );
+    //     $post_type_fields = array (
+    //         'id' => self::FIELD_GROUP_ID,
+    //         'title' => self::FIELD_GROUP_TITLE,
+    //         'fields' => $baseFields,
+    //         'location' => array (
+    //             array (
+    //                 array (
+    //                     'param' => 'post_type',
+    //                     'operator' => '==',
+    //                     'value' => self::getPostTypeName(),
+    //                     'order_no' => 0,
+    //                     'group_no' => 0,
+    //                 ),
+    //             ),
+    //         ),
+    //         'options' => array (
+    //             'position' => 'acf_after_title',
+    //             'layout' => 'default',
+    //             'hide_on_screen' => array (
+    //                 0 => 'permalink',
+    //                 1 => 'the_content',
+    //                 2 => 'excerpt',
+    //                 3 => 'custom_fields',
+    //                 4 => 'discussion',
+    //                 5 => 'revisions',
+    //                 6 => 'slug',
+    //                 7 => 'author',
+    //                 8 => 'format',
+    //                 9 => 'featured_image',
+    //                 10 => 'tags',
+    //                 11 => 'send-trackbacks',
+    //             ),
+    //         ),
+    //         'menu_order' => 0,
+    //     );
 
-        $post_type_fields = apply_filters("avs_post_type_fields", $post_type_fields, $this->getPostTypeName());
-        register_field_group($post_type_fields);
+    //     $post_type_fields = apply_filters("avs_post_type_fields", $post_type_fields, $this->getPostTypeName());
+    //     register_field_group($post_type_fields);
 
-    }
+    // }
 }
 
 /**
