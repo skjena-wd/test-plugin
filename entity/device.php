@@ -81,13 +81,14 @@ public function getSlug() {
 protected function __initPostType() {
 
     $args = array(
-        "menu_position" => 20,
+        "menu_position" => 30,
         "labels" => $this->getLabels('Skin'),
         "description" => "Skin",
         "public" => false,
         "show_ui" => true,
         "has_archive" => false,
-        "show_in_menu" => 'edit.php?post_type=' . DeviceMenu::POST_TYPE,
+        // "show_in_menu" => 'edit.php?post_type=' . DeviceMenu::POST_TYPE,
+        "show_in_menu" => 'edit.php?post_type=' . DeviceMenu::POST_TYPE =>  "show_in_menu" => true
         "exclude_from_search" => false,
         "capability_type" => $this -> getCapability(),
         "capabilities" => array(
