@@ -41,7 +41,6 @@ class TestPlugin {
 					plugin_dir_path(__FILE__) . 'upgrade'
 				);
 
-
 		}
 	}
 
@@ -59,7 +58,7 @@ class TestPlugin {
 	
 	
 	function __construct(){
-		add_action('init', array($this, 'custom_post_type'));
+		// add_action('init', array($this, 'custom_post_type'));
 	}
 	
 	function custom_post_type(){
