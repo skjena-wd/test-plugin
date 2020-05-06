@@ -26,7 +26,7 @@ public function init() {
     add_filter('avs_title_unique_constraint', function ($types) { $types[] = self::POST_TYPE; return $types; } );
 
     // add trash contraint on this post type
-    add_filter("can_trash_{$this->getPostTypeName()}_or_restore", array($this, 'isTrashable'), 1, 2);
+    // add_filter("can_trash_{$this->getPostTypeName()}_or_restore", array($this, 'isTrashable'), 1, 2);
 
     // Add validator
     add_filter('acf/validate_value/key=' . $this->getFieldKey(self::ACF_FIELD_DIRECTIVE), array($this, 'validateDirective'), 99, 4);
@@ -193,53 +193,53 @@ protected function __installFields() {
  * @param $post WP_Post
  * @return array
  */
-public function isTrashable($trashable, $post) {
+// public function isTrashable($trashable, $post) {
 
-    $menuWithSkin = array();
+//     $menuWithSkin = array();
 
-    $menu_args = array(
-        'post_status' => 'publish',
-        'post_type' => AvsMenu::POST_TYPE,
-        'numberposts' => -1,
-        'suppress_filters' => false
-    );
+//     $menu_args = array(
+//         'post_status' => 'publish',
+//         'post_type' => AvsMenu::POST_TYPE,
+//         'numberposts' => -1,
+//         'suppress_filters' => false
+//     );
 
-    // Load all published pages
-    $helper = $this -> __getHelper();
-    $menus = get_posts($menu_args);
+//     // Load all published pages
+//     $helper = $this -> __getHelper();
+//     $menus = get_posts($menu_args);
 
-    // cycle in every menu
-    foreach ($menus as $menu) {
+//     // cycle in every menu
+//     foreach ($menus as $menu) {
 
-        // get Skin form menu
-        $skin = $helper -> getSkinFromMenu($menu);
+//         // get Skin form menu
+//         $skin = $helper -> getSkinFromMenu($menu);
 
-        // check if the deleting collection is used
-        if ($skin && $skin -> getPost() -> ID == $post -> ID) {
+//         // check if the deleting collection is used
+//         if ($skin && $skin -> getPost() -> ID == $post -> ID) {
 
-            // add the title of the menu using the collection to an array of users
-            $menuWithSkin[] = avs_xss_sanitize($menu->post_title);
-        }
+//             // add the title of the menu using the collection to an array of users
+//             $menuWithSkin[] = avs_xss_sanitize($menu->post_title);
+//         }
 
-    }
+//     }
 
-    // if the collection is used stop the trashing and show where it's used
-    if ($menuWithSkin) {
+//     // if the collection is used stop the trashing and show where it's used
+//     if ($menuWithSkin) {
 
-        // log the untrashing
-        do_action('untrash_post', $post);
+//         // log the untrashing
+//         do_action('untrash_post', $post);
 
-        $menuWithSkin = implode(', ', $menuWithSkin);
-        return array(
-            'can_trash' => false,
-            'reason' => __('Skin used in Menu: '. $menuWithSkin , UIBuilder_Naming::getSlug())
-        );
-    }
+//         $menuWithSkin = implode(', ', $menuWithSkin);
+//         return array(
+//             'can_trash' => false,
+//             'reason' => __('Skin used in Menu: '. $menuWithSkin , UIBuilder_Naming::getSlug())
+//         );
+//     }
 
-    // nope. can trash.
-    return $trashable;
+//     // nope. can trash.
+//     return $trashable;
 
-}
+// }
 
 /**
  * @return array
