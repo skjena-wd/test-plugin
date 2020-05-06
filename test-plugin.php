@@ -89,8 +89,8 @@ if(class_exists('TestPlugin')){
 	$testPlugin = new TestPlugin();
 }
 
-register_activation_hook(__FILE__, array($testPlugin, 'activate'));
+// register_activation_hook(__FILE__, array($testPlugin, 'activate'));
 
-register_deactivation_hook(__FILE__, array($testPlugin, 'deactivate'));
+// register_deactivation_hook(__FILE__, array($testPlugin, 'deactivate'));
 
 ?>
