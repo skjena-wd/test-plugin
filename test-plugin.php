@@ -24,8 +24,7 @@ class TestPlugin {
 	const OPTION_INSTALLER_VERSION = 'test-installer-version';		
 
 	/**
-	 * init plugin
-	 */
+	 * init plugin*/
 	public static function init() {
 		// Check if Avs Web CMS is loaded
 		if(class_exists('Avs_Web_CMS') && Avs_Web_CMS::$initialized) {
