@@ -2,9 +2,9 @@
 
 class Device extends AvsPostType {
 
-const POST_TYPE = 'avs_skin';
-const FIELD_GROUP_ID = 'acf_avs_skin';
-const FIELD_GROUP_TITLE = 'Skin Rules';
+const POST_TYPE = 'avs_device';
+const FIELD_GROUP_ID = 'acf_avs_device';
+const FIELD_GROUP_TITLE = 'device Rules';
 
 const IMAGE_SCOPE_LOGO = 'skin-logo';
 
