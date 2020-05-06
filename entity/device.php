@@ -1,3 +1,4 @@
+<?php
 
 class Device extends AvsPostType {
 
@@ -651,3 +652,5 @@ protected function __getDirectiveContentType($type) {
     return false;
 }
 }
+
+?>
