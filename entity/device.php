@@ -80,29 +80,29 @@ public function getSlug() {
 
 protected function __initPostType() {
 
-    // $args = array(
-    //     "menu_position" => 20,
-    //     "labels" => $this->getLabels('Skin'),
-    //     "description" => "Skin",
-    //     "public" => false,
-    //     "show_ui" => true,
-    //     "has_archive" => false,
-    //     "show_in_menu" => 'edit.php?post_type=' . AvsMenu::POST_TYPE,
-    //     "exclude_from_search" => false,
-    //     "capability_type" => $this -> getCapability(),
-    //     "capabilities" => array(
-    //         "create_posts" => $this->getCreateCapability(),
-    //     ),
-    //     "map_meta_cap" => true,
-    //     "hierarchical" => false,
-    //     "rewrite" => array(
-    //         "slug" => $this -> getSlug(),
-    //         "with_front" => true
-    //     ),
-    //     "query_var" => true,
-    //     "supports" => array("title"),
-    //     "taxonomies" => array()
-    // );
+    $args = array(
+        "menu_position" => 20,
+        "labels" => $this->getLabels('Skin'),
+        "description" => "Skin",
+        "public" => false,
+        "show_ui" => true,
+        "has_archive" => false,
+        "show_in_menu" => 'edit.php?post_type=' . DeviceMenu::POST_TYPE,
+        "exclude_from_search" => false,
+        "capability_type" => $this -> getCapability(),
+        "capabilities" => array(
+            "create_posts" => $this->getCreateCapability(),
+        ),
+        "map_meta_cap" => true,
+        "hierarchical" => false,
+        "rewrite" => array(
+            "slug" => $this -> getSlug(),
+            "with_front" => true
+        ),
+        "query_var" => true,
+        "supports" => array("title"),
+        "taxonomies" => array()
+    );
 
     register_post_type($this -> getPostTypeName());
 }
