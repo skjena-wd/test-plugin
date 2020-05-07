@@ -19,24 +19,7 @@ const CONTENT_ID_DEL = "|";
 const CONTENT_ID_SEP = ":";
 
 public function init() {
-
     parent::init();
-
-    // add constraint on this post type
-    // add_filter('avs_title_unique_constraint', function ($types) { $types[] = self::POST_TYPE; return $types; } );
-
-    // add trash contraint on this post type
-    // add_filter("can_trash_{$this->getPostTypeName()}_or_restore", array($this, 'isTrashable'), 1, 2);
-
-    // Add validator
-    // add_filter('acf/validate_value/key=' . $this->getFieldKey(self::ACF_FIELD_DIRECTIVE), array($this, 'validateDirective'), 99, 4);
-
-    // Extends AvsSkin as Content for Rendition
-    // add_filter('avs_image_format_content_type_for_rendition', array($this, 'getContentType'), 10, 3);
-    // add_filter('avs_content_id', array($this, 'getContentId'), 10, 4);
-    // add_filter('avs_get_content_type_by_id', array($this, 'getContentTypeById'), 10, 3);
-    // add_filter('avs_get_content_by_id', array($this, 'getContent'), 10, 4);
-
 }
 
 /**
