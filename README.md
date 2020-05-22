@@ -66,21 +66,24 @@ This is a plugin for testing purposes
     
     
     
-     /**
-     * @param $menuitem array
-     * @param $parent array|null
-     * @param $depth int
-     * @return boolean
-     */
-    protected function __isActive($menuitem, $parent, $depth) {
-        // Fallback for sitemaps created before adding AvsMenu::ACF_FIELD_ACTIVE field
-        if (!isset($menuitem[AvsMenu::ACF_FIELD_ACTIVE])) {
-            return true;
-        }
-        return (bool)$menuitem[AvsMenu::ACF_FIELD_ACTIVE];
-    }
-    
-     /**
+   class Avs_Menu_Exporter
+{
+	/**1
+	* @param $menuitem array
+	* @param $parent array|null
+	* @param $depth int
+	* @return boolean 
+	*/
+
+	protected function __isActive($menuitem, $parent, $depth){
+		//fallback for sitemaps created before adding AvsMenu::ACF_FIELD_ACTIVE field
+		if(!isset($menuitem[AvsMenu::ACF_FIELD_ACTIVE])){
+			return true;
+		}
+		return (bool)$menuitem[AvsMenu::ACF_FIELD_ACTIVE];
+	}
+
+    /**
      * Create recursively menu items as json.
      * @param $items array
      * @param $parent array
@@ -88,11 +91,16 @@ This is a plugin for testing purposes
      * @return array
      */
     protected function __getItems($items, $parent, $depth = 1, $parent_suffix_id = "") {
+
         $json_menu = array();
         $menu = $this -> getMenu();
+
         if($items) {
+
             foreach ($items as $index => $item) {
+
                 $isActive = $this->__isActive($item, $parent, $depth);
+
                 /**
                  * Check if a Sitemap menu item is active
                  *
@@ -133,7 +141,20 @@ This is a plugin for testing purposes
 
                     $json_menu[] = array_filter($json_menu_item);
                 }
+
             }
+
         }
+
         return $json_menu;
     }
+
+
+
+
+
+
+}
+
+
+
