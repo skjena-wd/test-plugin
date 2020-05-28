@@ -68,7 +68,7 @@ This is a plugin for testing purposes
     
    class Avs_Menu_Exporter
 {
-	/**1
+	/**
 	* @param $menuitem array
 	* @param $parent array|null
 	* @param $depth int
@@ -151,10 +151,35 @@ This is a plugin for testing purposes
 
 
 
-
-
-
 }
 
 
 
+
+
+
+<script>
+// Add clone button near each row in repeater "Items"
+jQuery(document).find(".acf-icon.-plus").after('<a class="acf-icon -clone small acf-js-tooltip avs-tooltip" href="#" data-event="clone-row" title="Clone row"></a>');
+//or
+let cloneButton = jQuery('<a></a>')
+    .addClass('acf-icon')
+    .addClass('-clone')
+    .addClass('small')
+    .addClass('acf-js-tooltip')
+    .addClass('avs-tooltip')
+    .attr('href', '#')
+    .attr('title', 'Clone row')
+    .attr('data-event', 'clone-row');
+jQuery(document).find(".acf-icon.-plus").after(cloneButton);
+
+
+// Clone Menu Item and add to the parent div
+jQuery(document).on('click', '.acf-icon.-clone', function(){
+    let $this = jQuery(this);
+    let $parentMenu = jQuery(this).closest(".acf-row");
+    acf.duplicate({
+        target: $parentMenu
+    });
+});
+</script>
