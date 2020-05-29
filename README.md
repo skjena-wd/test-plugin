@@ -182,4 +182,70 @@ jQuery(document).on('click', '.acf-icon.-clone', function(){
         target: $parentMenu
     });
 });
+
+
+
+// Clone Menu Item and add to the parent div
+jQuery(document).on('click', '.acf-icon.-clone', function(){
+    let $this = jQuery(this);
+    let $parentMenu = jQuery(this).closest(".acf-row");
+
+    // Prepare unique id
+    let uniqId = acf.uniqid();
+
+    // Get title field in item menu
+    let $title = $parentMenu.find('.acf-field-avs-menu-title input').first();
+
+    // Prepare string to replace
+    let search = $title.attr('name').replace('acf', ''); // remove "acf" prefix
+    search = search.replace('[field_avs_menu_title]', ''); // remove "[field_avs_menu_title]"
+
+    // Prepare replace
+    let replace = search.substring(0, search.lastIndexOf("[")); // remove last [\w+] occurence at the end of the string
+    replace = replace + '[' + uniqId + ']'; // append the uniqId
+
+    // Clone menu item
+    acf.duplicate({
+
+        // Search to replace
+        search: search,
+
+        // Use uniqid for clone
+        replace: replace,
+
+        // Clone target
+        target: $parentMenu,
+
+        // Append clone
+        append: function( $el, $el2 ){
+
+            // Fix uniqId cause acf.rename set "replace" string as new data-id
+            $el2.attr('data-id', uniqId);
+
+            // Append the prefix "Clone of" to all menu title values
+            // @TODO
+
+            // append
+            $el.after( $el2 );
+        },
+
+        // Before clone
+        before: function($el) {
+
+            // destroy all select2 in target to clone
+            var $select = $el.find('.select2-hidden-accessible').select2();
+            $select.each(function(i,item){
+                jQuery(item).select2("destroy");
+            });
+        },
+
+        // After clone
+        after: function($el1, $el2) {
+
+            // restore all select2 destroyed before
+            $el1.find('select[data-ui="1"').select2();
+        },
+    });
+});
+
 </script>
